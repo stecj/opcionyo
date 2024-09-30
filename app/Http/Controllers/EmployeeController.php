@@ -61,4 +61,19 @@ class EmployeeController extends Controller
 
         return view('employee.available');
     }
+
+    public function findAvailable(Request $request)
+    {
+        $request->validate([
+            'datetime' => 'required|date_format:Y-m-d H:i:s',
+        ]);
+
+        $dateTime = Carbon::parse($request->datetime)->setTimezone('America/New_York');
+        $availableEmployees = $this->scheduleService->findAvailableEmployees($dateTime);
+
+        return response()->json([
+            'available_employees' => $availableEmployees,
+            'requested_time' => $dateTime->format('Y-m-d H:i:s'),
+        ]);
+    }
 }

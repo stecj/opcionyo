@@ -25,9 +25,11 @@ class ScheduleService
         ];
     }
 
-    public function findAvailableEmployee(Carbon $dateTime)
+    public function findAvailableEmployees(Carbon $dateTime)
     {
+        $availableEmployees = [];
         $employees = Employee::all();
+
         foreach ($employees as $employee) {
             $localDateTime = $dateTime->copy()->setTimezone($employee->timezone);
             $schedule = $employee->schedules()
@@ -44,12 +46,12 @@ class ScheduleService
                     ->first();
 
                 if (!$reservation) {
-                    return $employee;
+                    $availableEmployees[] = $employee;
                 }
             }
         }
 
-        return null;
+        return $availableEmployees;
     }
 
     public function generateReport()

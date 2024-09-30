@@ -4,6 +4,7 @@ namespace App\Exports;
 
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Illuminate\Support\Collection;
 
 class EmployeeReportExport implements FromCollection, WithHeadings
 {
@@ -16,7 +17,7 @@ class EmployeeReportExport implements FromCollection, WithHeadings
 
     public function collection()
     {
-        return collect($this->report);
+        return new Collection($this->report);
     }
 
     public function headings(): array

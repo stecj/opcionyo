@@ -24,17 +24,25 @@ class ReservationController extends Controller
         ]);
 
         $employee = Employee::findOrFail($request->employee_id);
-        $startTime = Carbon::parse($request->date . ' ' . $request->time, $employee->timezone);
+        $startTime = Carbon::parse($request->date . ' ' . $request->time, 'America/New_York');
         $endTime = $startTime->copy()->addHour();
 
-        // Convertir a la zona horaria de New York para almacenar
-        $nyStartTime = $startTime->setTimezone('America/New_York');
-        $nyEndTime = $endTime->setTimezone('America/New_York');
+        // Verificar si ya existe una reserva para esa hora
+        $existingReservation = Reservation::where('employee_id', $request->employee_id)
+            ->where(function($query) use ($startTime, $endTime) {
+                $query->whereBetween('start_time', [$startTime, $endTime])
+                    ->orWhereBetween('end_time', [$startTime, $endTime]);
+            })
+            ->first();
+
+        if ($existingReservation) {
+            return redirect()->back()->with('error', 'Ya existe una reserva para esa hora. Por favor, seleccione otra hora.');
+        }
 
         Reservation::create([
             'employee_id' => $request->employee_id,
-            'start_time' => $nyStartTime,
-            'end_time' => $nyEndTime,
+            'start_time' => $startTime,
+            'end_time' => $endTime,
         ]);
 
         return redirect()->route('employee.schedule', ['employee' => $request->employee_id])

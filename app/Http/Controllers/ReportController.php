@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\ScheduleService;
-use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\EmployeeReportExport;
+use App\Services\ScheduleService;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ReportController extends Controller
 {
@@ -14,11 +13,6 @@ class ReportController extends Controller
     public function __construct(ScheduleService $scheduleService)
     {
         $this->scheduleService = $scheduleService;
-    }
-
-    public function generateForm()
-    {
-        return view('report.generate');
     }
 
     public function generateReport()

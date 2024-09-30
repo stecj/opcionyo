@@ -17,7 +17,8 @@
             <li><a href="{{ route('employee.schedule') }}">Horario de Empleado</a></li>
             <li><a href="{{ route('employee.available') }}">Empleado Disponible</a></li>
             <li><a href="{{ route('reservation.create') }}" class="btn">Crear Reserva</a></li>
-            <li><a href="{{ route('report.generate') }}">Generar Reporte</a></li>
+            <li><a href="{{ route('report.download') }}">Generar Reporte</a></li>
+            <li><a href="{{ route('email.form') }}">Enviar Horario</a></li>
         </ul>
     </nav>
 
