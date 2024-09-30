@@ -1,0 +1,77 @@
+# Gestión de Horarios de Empleados
+
+Este proyecto es una aplicación Laravel para gestionar horarios de empleados y reservas.
+
+## Requisitos
+
+- PHP 8.1 o superior
+- Composer
+- MySQL
+- Node.js y npm (para compilar assets si es necesario)
+
+## Configuración
+
+1. Clona el repositorio:
+   ```
+   git clone https://github.com/tu-usuario/gestion-horarios.git
+   cd gestion-horarios
+   ```
+
+2. Instala las dependencias de PHP:
+   ```
+   composer install
+   ```
+
+3. Copia el archivo de entorno y configúralo:
+   ```
+   cp .env.example .env
+   ```
+   Edita el archivo `.env` y configura la conexión a la base de datos.
+
+4. Genera la clave de la aplicación:
+   ```
+   php artisan key:generate
+   ```
+
+5. Ejecuta las migraciones y los seeders:
+   ```
+   php artisan migrate:fresh --seed
+   ```
+
+6. Inicia el servidor de desarrollo:
+   ```
+   php artisan serve
+   ```
+
+## Pruebas
+
+Para ejecutar las pruebas:
+
+```
+php artisan test
+```
+
+## Uso de la API
+
+### Obtener horario de un empleado
+
+```
+GET /api/employees/{employee}/schedule?start_date=2024-01-01&end_date=2024-01-07
+```
+
+### Encontrar un empleado disponible
+
+```
+GET /api/employees/available?datetime=2024-01-01 10:00:00
+```
+
+### Generar reporte
+
+```
+GET /api/report
+```
+
+## Notas
+
+- Todos los horarios se manejan en la zona horaria de Nueva York (America/New_York).
+- Se utiliza la librería Carbon para el manejo de fechas y horas.
