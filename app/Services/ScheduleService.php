@@ -25,7 +25,7 @@ class ScheduleService
         ];
     }
 
-    public function findAvailableEmployee(Carbon $dateTime)
+    public function findAvailableEmployees(Carbon $dateTime)
     {
         $employees = Employee::all();
         foreach ($employees as $employee) {
