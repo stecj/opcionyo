@@ -13,8 +13,7 @@ Este proyecto es una aplicación Laravel para gestionar horarios de empleados y 
 
 1. Clona el repositorio:
    ```
-   git clone https://github.com/tu-usuario/gestion-horarios.git
-   cd gestion-horarios
+   git clone https://github.com/stecj/opcionyo.git
    ```
 
 2. Instala las dependencias de PHP:
@@ -43,32 +42,12 @@ Este proyecto es una aplicación Laravel para gestionar horarios de empleados y 
    php artisan serve
    ```
 
-## Pruebas
-
-Para ejecutar las pruebas:
-
-```
-php artisan test
-```
-
 ## Uso de la API
-
-### Obtener horario de un empleado
-
-```
-GET /api/employees/{employee}/schedule?start_date=2024-01-01&end_date=2024-01-07
-```
 
 ### Encontrar un empleado disponible
 
 ```
-GET /api/employees/available?datetime=2024-01-01 10:00:00
-```
-
-### Generar reporte
-
-```
-GET /api/report
+GET /api/employees/available?datetime=2024-01-02 14:00:00
 ```
 
 ## Notas
