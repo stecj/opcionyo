@@ -46,7 +46,7 @@ class EmailScheduleController extends Controller
         }
         $emailContent .= "\nReservaciones:\n";
         foreach ($reservations as $reservation) {
-            $emailContent .= "- " . Carbon::parse($schedule->start_time)->format('H:i') . " - " . Carbon::parse($schedule->end_time)->format('H:i');
+            $emailContent .= "- " . Carbon::parse($reservation->start_time)->format('H:i') . " - " . Carbon::parse($reservation->end_time)->format('H:i') . "\n";
         }
 
         // Loguear la información
